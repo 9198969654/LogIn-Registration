@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@@RestController
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
