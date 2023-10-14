@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/registration_db
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver  # Specify the driver class name here
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+
+  mail:
+    host: smtp.gmail.com
+    port: 587  # Your SMTP server's port
+    username: narendrakumarnishad56@gmail.com
+    password: Gmail221104@
+    properties:
+      mail:
+        smtp:
+          auth: true
