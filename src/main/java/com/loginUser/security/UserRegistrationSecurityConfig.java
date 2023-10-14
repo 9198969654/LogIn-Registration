@@ -27,11 +27,11 @@ public class UserRegistrationSecurityConfig {
                 .csrf()
                 .disable() // Disable CSRF protection
                 .authorizeHttpRequests() // Authorize HTTP requests
-                .requestMatchers("/register") // Specify requests to /register
+                .requestMatchers("/register/**") // Specify requests to /register
                 .permitAll() // Allow unauthenticated access to /register
                 .and()
                 .authorizeHttpRequests() // Authorize HTTP requests again
-                .requestMatchers("/users") // Specify requests to /users
+                .requestMatchers("/users/**") // Specify requests to /users
                 .hasAnyAuthority("USER", "ADMIN") // Allow access to /users for users with "USER" or "ADMIN" authority
                 .and()
                 .formLogin() // Enable form-based login

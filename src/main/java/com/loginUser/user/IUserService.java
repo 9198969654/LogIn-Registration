@@ -1,6 +1,7 @@
 package com.loginUser.user;
 
 import com.loginUser.registration.RegistrationRequest;
+import com.loginUser.registration.token.VerificationToken;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +15,7 @@ public interface IUserService {
     Optional<User> findByEmail(String email);
 
     void saveUserVerificationToken(User theUser, String verificationToken);
+
+
+    String validateToken(String theToken);
 }
