@@ -44,11 +44,13 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         }
         log.info("Click the link to verify your registration :  {}", url);
     }
+
+
     public void sendVerificationEmail(String url) throws MessagingException, UnsupportedEncodingException {
         String subject = "Email Verification";
         String senderName = "User Registration Portal Service";
         String mailContent = "<p> Hi, "+ theUser.getFirstName()+ ", </p>"+
-                "<p>Thank you for registering with us,"+"" +
+                "<p>Thank you for registering with us,"+" " +
                 "Please, follow the link below to complete your registration.</p>"+
                 "<a href=\"" +url+ "\">Verify your email to activate your account</a>"+
                 "<p> Thank you <br> Users Registration Portal Service";
