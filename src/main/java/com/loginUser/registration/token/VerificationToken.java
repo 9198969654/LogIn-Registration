@@ -9,13 +9,14 @@ import lombok.Setter;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * @author Sampson Alfred
+ */
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 public class VerificationToken {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,9 +41,7 @@ public class VerificationToken {
         this.expirationTime = this.getTokenExpirationTime();
     }
 
-
     public Date getTokenExpirationTime() {
-
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(new Date().getTime());
         calendar.add(Calendar.MINUTE, EXPIRATION_TIME);
