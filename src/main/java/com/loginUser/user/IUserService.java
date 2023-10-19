@@ -18,4 +18,6 @@ public interface IUserService {
 
 
     String validateToken(String theToken);
+
+    VerificationToken generateNewVarificationToken(String oldToken);
 }

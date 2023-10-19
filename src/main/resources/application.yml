@@ -21,3 +21,10 @@ spring:
       mail:
         smtp:
           auth: true
+
+
+          grails:
+            plugins:
+              springsecurity:
+                useSecurityEventListener: true
+
