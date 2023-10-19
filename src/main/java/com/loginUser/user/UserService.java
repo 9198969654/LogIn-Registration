@@ -1,6 +1,7 @@
 package com.loginUser.user;
 
-import com.loginUser.exception.UserAlreadyExistException;
+
+import com.loginUser.exception.UserAlreadyExistsException;
 import com.loginUser.registration.RegistrationRequest;
 import com.loginUser.registration.token.VerificationToken;
 import com.loginUser.registration.token.VerificationTokenRepository;
@@ -12,31 +13,30 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * @author Sampson Alfred
+ */
 @Service
 @RequiredArgsConstructor
-public class UserService implements IUserService{
-
+public class UserService implements IUserService {
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final VerificationTokenRepository tokenRepository;
-
-
 
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
+
     @Override
     public User registerUser(RegistrationRequest request) {
         Optional<User> user = this.findByEmail(request.email());
         if (user.isPresent()){
-            throw new UserAlreadyExistException("User with email " +request.email() + "Already exist");
+            throw new UserAlreadyExistsException(
+                    "User with email "+request.email() + " already exists");
         }
-        var newUser = new  User();
+        var newUser = new User();
         newUser.setFirstName(request.firstName());
         newUser.setLastName(request.lastName());
         newUser.setEmail(request.email());
@@ -59,8 +59,8 @@ public class UserService implements IUserService{
     @Override
     public String validateToken(String theToken) {
         VerificationToken token = tokenRepository.findByToken(theToken);
-        if (token == null){
-            return  "Invalid verification token";
+        if(token == null){
+            return "Invalid verification token";
         }
         User user = token.getUser();
         Calendar calendar = Calendar.getInstance();
@@ -72,6 +72,4 @@ public class UserService implements IUserService{
         userRepository.save(user);
         return "valid";
     }
-
-
 }
